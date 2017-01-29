@@ -1,0 +1,31 @@
+FirstTag
+{
+	display: block;
+	font-family: Arial;
+	color: blue;
+	font-size: large;
+}
+Name
+{
+	display: block;
+	font-family: Arial;
+	color: blue;
+	font-size: large;
+}
+Phone
+{
+	display: block;
+	font-family: Arial;
+	color: blue;
+	font-size: large;
+}
+Email
+{
+	display: block;
+	font-family: Arial;
+	color: blue;
+	font-size: large;
+}
+Email:before { content: "Email: "}
+Phone:before {content: attr(type) ": "}
+Phone[primary]:after {content: "(" attr(primary) ")" }

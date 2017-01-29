@@ -1,0 +1,38 @@
+{
+  "name": "ski-dictionary",
+  "version": "1.0.0",
+  "description": "Collection of ski related terms",
+  "main": "app.js",
+  "scripts": {
+    "predebug":"grunt",
+    "debug":"start http://localhost:3000 & http://localhost:8080/debug?port=5858",
+    "postdebug":"node-inspector & node --debug app",
+    
+    "prestart":"grunt",
+    "start":"node app",
+    "predev":"grunt",
+    "dev":"start http://localhost:3000 & node-dev app & grunt watch" 
+  },
+  "keywords": [
+    "ski",
+    "terms",
+    "dictionary"
+  ],
+  "author": "Rushi Bhatt",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
+    "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "cheerio": "^0.22.0",
+    "grunt": "^1.0.1",
+    "grunt-autoprefixer": "^3.0.4",
+    "grunt-browserify": "^5.0.0",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-less": "^1.4.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "supertest": "^2.0.1"
+  }
+}

@@ -1,0 +1,219 @@
+<html>
+<head>
+	<style type="text/css">
+	section div{
+		height: 100px;
+		width: 100px;
+		background-color: red;
+		float: left;
+		margin: 3px;
+		cursor: pointer;
+	}
+	</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js"></script>
+<script type="text/javascript">
+//Use of default parameter for function
+var abc= function(fn="Rushi", ln="Bhatt"){
+	console.log(fn+" "+ln);
+};
+abc();
+
+//Use of let keyword
+var x=10;
+if(x){
+	let x=4;
+	console.log(x);
+}
+console.log(x);    //Output will be 4 always if var i=4 is used instead of let x=4
+
+//Other use of let keyword
+window.onload=function(){
+	for(let i=0;i<45;i++){
+	var div=document.createElement('div');
+	div.onclick=function(){
+		alert("This is div"+i);           //Output will be 45 always if var i is used instead of let i
+	}
+	document.getElementsByTagName('section')[0].appendChild(div);
+	}	
+}
+
+//Const keyword
+const abcd=55;
+//abc=67; //Error - abc has already been declared
+
+//Template strings
+var email=function(fn,pp,sp){
+	console.log(
+		`
+			Hello ${fn}, Thanks for buying from us!
+			Total: $${pp}
+			Shipping: $${sp}
+			GrandTotal: $${sp+pp}
+		`
+		);
+}
+email("Rushi",55,25);
+
+//Spread operator 
+var a=[1,2,3];
+var b=[4,5,6];
+var c=[7,8,9];
+var d=[a,b,c];
+console.log(d); //[Array[3], Array[3], Array[3]]
+var d=[...a,...b,...c]; //[1,2,3,4,5,6,7,8,9]
+console.log(d);
+
+//Enhancing object literarl
+//Old method
+var cat={
+	meow:function(times){
+		console.log(Array(times+1).join("Meow"));   //+1 because of the js 0 based index
+	}
+};
+cat.meow(3); // if not +1, then will print only 2 times
+//New method
+var cat1={
+	meow(times){
+		console.log("Meow".repeat(times));   //repeat is ES6 function that creates and returns new string
+	}
+};
+cat1.meow(3); // will print 3 times
+
+//Arrow function
+var studentList=students=>console.log(students); // instead of using var studentList=function(students){ 
+//	console.log(students);
+//}
+studentList(["a","b","c"]);
+
+//Arrow function with this scope
+var person={
+	firstName:"Rushi",
+	actions:["Bike","Hike","Ski"],
+	printActions:function(){
+		this.actions.forEach(function(action){
+			var str=this.firstName + "likes" + action;
+			console.log(str);
+		});
+	}
+}
+person.printActions(); //this.firstname - undefined
+
+//Solution1:
+var person={
+	firstName:"Rushi",
+	actions:["Bike","Hike","Ski"],
+	printActions:function(){
+		var _this=this;  //Store this in local var
+		this.actions.forEach(function(action){
+			var str=_this.firstName + "likes" + action;
+			console.log(str);
+		});
+	}
+}
+person.printActions(); 
+
+//Solution2:
+var person={
+	firstName:"Rushi",
+	actions:["Bike","Hike","Ski"],
+	printActions:function(){
+		this.actions.forEach(function(action){
+			var str=this.firstName + "likes" + action;
+			console.log(str);
+		}.bind(this));  //bind this value with forEach
+	}
+}
+person.printActions(); 
+
+//Arrow solution
+
+var person={
+	firstName:"Rushi",
+	actions:["Bike","Hike","Ski"],
+	printActions(){
+		this.actions.forEach(action=>{
+			var str=this.firstName + "likes" + action;
+			console.log(str);
+		}); 
+	}
+}
+person.printActions(); 
+
+//Destructuring assignments:
+var arrayList=[1,2,3,4,5];
+var [first,,,fourth,]=[1,2,3,4,5];
+console.log(first); //1
+console.log(fourth); //4
+
+//same way for objects
+var sandwich={
+	name:"Cheese",
+	price:76,
+	ingredients:["Bread","Cheese"]
+}
+console.log(sandwich.price);
+
+var {name,price}={
+	name:"Cheese",
+	price:76,
+	ingredients:["Bread","Cheese"]
+}
+console.log(price);
+
+function hghg({name,price}){
+	console.log(`${name} and ${price}`);
+}
+hghg(sandwich);
+
+//Generators:
+function* eachItem(arr){
+	for(var i=0;i<arr.length;i++){
+		yield arr[i];	
+	}
+	
+}
+var letters=eachItem([1,2,3,4,5]);
+var abcs=setInterval(function(){
+	var letter=letters.next();
+	if(letter.done){
+		clearInterval(abcs);
+		console.log("now done");
+	}
+	else{
+		console.log(letter.value);
+	}
+},500);
+
+//ES6 Classes
+//same syntax as of java
+class Vehicle{
+	constructor(name,wheels){
+		this.name=name;
+		this.wheels=wheels;
+	}
+	describe(){
+		console.log(`I am ${this.name} and I have ${this.wheels} wheels`);
+	}
+}
+class semiTruck extends Vehicle{
+	constructor(){
+		super("semiTruck",18);
+	}
+}
+var vhcl=new Vehicle("car",4);
+vhcl.describe();
+var smtr=new semiTruck();
+smtr.describe();
+
+//React js component with ES6 classses
+
+</script>
+</head>
+<body>
+<header>
+<section>
+
+</section>
+</header>
+</body>
+</html>

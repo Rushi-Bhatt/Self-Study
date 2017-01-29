@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/css" href="prog1.css"?>
+<!-- <FirstTag>
+	This is our first xml file
+	
+</FirstTag> -->
+<BusinessCards>
+	<BusinessCard>
+		<Name> Rushi K Bhatt</Name>
+		<Phone type="home">11111111</Phone>
+		<Phone type="work" primary="primary">11111112</Phone>
+		<Phone type="cell">11111113</Phone>
+		<Email> rbhatt@ncsu.edu</Email>
+	</BusinessCard>
+	<BusinessCard>
+		<Name> Raj K Bhatt</Name>
+		<Phone type="home">21111111</Phone>
+		<Phone type="work">21111112</Phone>
+		<Phone type="cell" primary="primary">21111113</Phone>
+		<Email> rkbhatt@ncsu.edu</Email>
+	</BusinessCard>
+<BusinessCards>
