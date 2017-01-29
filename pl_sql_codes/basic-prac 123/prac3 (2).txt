@@ -1,0 +1,52 @@
+SQL> select * from account;
+
+    ACCNO NAME          PHONE   BALANCE D_O_B
+--------- --------- --------- --------- ---------
+      100 Aman      987654321  10025.32 08-MAR-93
+      101 Ankur     123456789   45698.3 19-JUL-92
+      102 Ankit     456123879   32650.3 24-DEC-91
+      103 Chirag    1.958E+09   98765.3 01-OCT-94
+      104 Chintu    465568211     65423 22-DEC-92
+
+SQL> update account set phone=132945786 where name='Chirag';
+
+1 row updated.
+
+SQL> alter table account modify(phone number(10));
+
+Table altered.
+
+SQL> alter table account add(Branch varchar2(10));
+
+Table altered.
+
+SQL> update account set Branch='Ahmedabad' where name='Chirag';
+
+1 row updated.
+
+SQL> update account set Branch='Indore' where name='Aman';
+
+1 row updated.
+
+SQL> select * from account;
+
+    ACCNO NAME          PHONE   BALANCE D_O_B     BRANCH
+--------- --------- --------- --------- --------- ----------
+      100 Aman      987654321  10025.32 08-MAR-93 Indore
+      101 Ankur     123456789   45698.3 19-JUL-92
+      102 Ankit     456123879   32650.3 24-DEC-91
+      103 Chirag    132945786   98765.3 01-OCT-94 Ahmedabad
+      104 Chintu    465568211     65423 22-DEC-92
+
+SQL> delete from account where name='Chintu';
+
+1 row deleted.
+
+SQL> select * from account;
+
+    ACCNO NAME          PHONE   BALANCE D_O_B     BRANCH
+--------- --------- --------- --------- --------- ----------
+      100 Aman      987654321  10025.32 08-MAR-93 Indore
+      101 Ankur     123456789   45698.3 19-JUL-92
+      102 Ankit     456123879   32650.3 24-DEC-91
+      103 Chirag    132945786   98765.3 01-OCT-94 Ahmedabad

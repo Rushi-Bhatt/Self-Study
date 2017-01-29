@@ -1,0 +1,175 @@
+SQL> select * from student;
+
+   ROLLNO NAME                     MARKS     SCODE
+--------- -------------------- --------- ---------
+        1 ravi                        90         1
+        2 harshil                     90
+        3 shobhit                     91
+        4 rohan                       92
+        5 sanjay                      98
+
+SQL> select * from bce11125.bank;
+
+  CUST_NO NAME              BALANCE CITY       ADDR       DOB
+--------- --------------- --------- ---------- ---------- ---------
+        2 ammn                 2000 indore     q205 shal  07-MAY-93
+        1 shobhit            100000 indore     q205 shal  04-AUG-92
+          rohan               90000 udaipur               13-OCT-93
+        5 achint              30000 ujjain     nehru nagr 12-DEC-90
+          sanu                    0 patna                 09-JAN-93
+        8                     80000 delhi      gandi ngr  01-JAN-99
+        0 dhum dhum                                       25-JUN-93
+                                               gandi ngr  01-JAN-99
+        5 achint              30000 ujjain     nehru nagr 12-DEC-90
+        6 shobhit             10000 indore     q205 shal  04-AUG-92
+
+10 rows selected.
+
+  1* grant all on bce11128.student to bce11125
+SQL> /
+
+Grant succeeded.
+
+SQL> select * from student;
+
+   ROLLNO NAME                     MARKS     SCODE
+--------- -------------------- --------- ---------
+        1 ravi                        90         1
+        2 harshil                     90
+        3 shobhit                     91
+        4 rohan                       92
+        5 sanjay                      98
+
+SQL> /
+
+   ROLLNO NAME                     MARKS     SCODE
+--------- -------------------- --------- ---------
+        1 ravi                        90         1
+        2 harshil                     90
+        3 shob                        91
+        4 rohan                       92
+        5 sanjay                      98
+
+SQL> update student set name='shobhit' where name='shob';
+
+1 row updated.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> update bce11125.bank set name='shob' where cust_no=1;
+update bce11125.bank set name='shob' where cust_no=1
+                *
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+
+SQL> /
+update bce11125.bank set name='shob' where cust_no=1
+                *
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+
+SQL> /
+
+1 row updated.
+
+SQL> select * from bce11125.bank;
+
+  CUST_NO NAME              BALANCE CITY       ADDR       DOB
+--------- --------------- --------- ---------- ---------- ---------
+        2 ammn                 2000 indore     q205 shal  07-MAY-93
+        1 shob               100000 indore     q205 shal  04-AUG-92
+          rohan               90000 udaipur               13-OCT-93
+        5 achint              30000 ujjain     nehru nagr 12-DEC-90
+          sanu                    0 patna                 09-JAN-93
+        8                     80000 delhi      gandi ngr  01-JAN-99
+        0 dhum dhum                                       25-JUN-93
+                                               gandi ngr  01-JAN-99
+        5 achint              30000 ujjain     nehru nagr 12-DEC-90
+        6 shobhit             10000 indore     q205 shal  04-AUG-92
+
+10 rows selected.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> create view v_gr as select name,balance,city from bce11125.bank;
+
+View created.
+
+SQL> select * from v_gr;
+
+NAME              BALANCE CITY
+--------------- --------- ----------
+ammn                 2000 indore
+shob               100000 indore
+rohan               90000 udaipur
+achint              30000 ujjain
+sanu                    0 patna
+                    80000 delhi
+dhum dhum
+
+achint              30000 ujjain
+shobhit             10000 indore
+
+10 rows selected.
+
+SQL> update v_gr set name='aman' where name='ammn';
+
+1 row updated.
+
+SQL> select * from v_gr;
+
+NAME              BALANCE CITY
+--------------- --------- ----------
+aman                 2000 indore
+shob               100000 indore
+rohan               90000 udaipur
+achint              30000 ujjain
+sanu                    0 patna
+                    80000 delhi
+dhum dhum
+
+achint              30000 ujjain
+shobhit             10000 indore
+
+10 rows selected.
+
+SQL> grant all on bce11128.v_gr to bce11125;
+grant all on bce11128.v_gr to bce11125
+                      *
+ERROR at line 1:
+ORA-01720: grant option does not exist for 'BCE11125.BANK'
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* grant select on bce11128.v_gr to bce11125
+SQL> /
+grant select on bce11128.v_gr to bce11125
+                         *
+ERROR at line 1:
+ORA-01720: grant option does not exist for 'BCE11125.BANK'
+
+
+SQL> select * from bce11125.bank;
+
+  CUST_NO NAME              BALANCE CITY       ADDR       DOB
+--------- --------------- --------- ---------- ---------- ---------
+        2 aman                 2000 indore     q205 shal  07-MAY-93
+        1 shob               100000 indore     q205 shal  04-AUG-92
+          rohan               90000 udaipur               13-OCT-93
+        5 achint              30000 ujjain     nehru nagr 12-DEC-90
+          sanu                    0 patna                 09-JAN-93
+        8                     80000 delhi      gandi ngr  01-JAN-99
+        0 dhum dhum                                       25-JUN-93
+                                               gandi ngr  01-JAN-99
+        5 achint              30000 ujjain     nehru nagr 12-DEC-90
+        6 shobhit             10000 indore     q205 shal  04-AUG-92
+
+10 rows selected.

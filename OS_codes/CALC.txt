@@ -1,0 +1,61 @@
+
+clear
+
+echo "1. Addition"
+echo "2. Subtraction"
+echo "3. Multiplication"
+echo "4. Division"
+echo "Enter your choice: "
+read ch
+
+if [ $ch -eq 1 -o $ch -eq 2 -o $ch -eq 3 -o $ch -eq 4 ]
+
+then
+
+        echo "Enter the first number: "
+        read f_num
+
+        echo "Enter the second number: "
+        read s_num
+
+elif [ $ch -ne 1 -a $ch -ne 2 -a $ch -ne 3 -a $ch -ne 4 ]
+
+then
+        echo "Incorrect Entry"
+
+fi
+
+if [ $ch -eq 1 ]
+
+then
+        echo "The sum is: "
+        echo `expr $f_num + $s_num | bc`
+
+fi
+
+if [ $ch -eq 2 ]
+
+then
+        echo "The difference is: "
+        echo `expr $f_num - $s_num | bc`
+
+fi
+
+if [ $ch -eq 3 ]
+
+then
+
+        echo "The multiplication is: "
+        echo `expr $f_num \* $s_num | bc`
+
+fi
+
+if [ $ch -eq 4 ]
+
+then
+
+        echo "The division is: "
+        echo `expr $f_num / $s_num | bc`
+
+fi
+                                                                                                                              

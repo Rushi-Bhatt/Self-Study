@@ -1,0 +1,458 @@
+SQL> desc customerlist
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ NAME                                                           VARCHAR2(15)
+ ADDRESS                                                        VARCHAR2(5)
+ CRATING                                                        NUMBER(5)
+ CAMOUNT                                                        NUMBER(5)
+ CBALANCE                                                       NUMBER(6)
+ SALESPERSONBNUM                                                NUMBER(6)
+
+SQL> desc customers
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ ID                                                    NOT NULL NUMBER(38)
+ NAME                                                  NOT NULL VARCHAR2(20)
+ AGE                                                   NOT NULL NUMBER(38)
+ ADDRESS                                                        CHAR(25)
+ SALARY                                                         NUMBER(18,2)
+
+SQL> select * from customers
+  2  ;
+
+no rows selected
+
+
+
+  1* select * from customerlist
+  2  ;
+
+NAME            ADDRE   CRATING   CAMOUNT  CBALANCE SALESPERSONBNUM
+--------------- ----- --------- --------- --------- ---------------
+smith           xxx           5      1000      1000             101
+jones           yyy           7      5000      4000             101
+wei             zzz          10     10000     10000
+
+
+
+  1  alter table customers
+  2* modify id number(2)
+  3  ;
+
+Table altered.
+
+SQL> desc customers
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ ID                                                    NOT NULL NUMBER(2)
+ NAME                                                  NOT NULL VARCHAR2(20)
+ AGE                                                   NOT NULL NUMBER(38)
+ ADDRESS                                                        CHAR(25)
+ SALARY                                                         NUMBER(18,2)
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  alter table customers
+  2* modify age number(2)
+  3  ;
+
+Table altered.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  alter table customers
+  2* modify salary number(6)
+  3  ;
+
+Table altered.
+
+SQL> desc customers
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ ID                                                    NOT NULL NUMBER(2)
+ NAME                                                  NOT NULL VARCHAR2(20)
+ AGE                                                   NOT NULL NUMBER(2)
+ ADDRESS                                                        CHAR(25)
+ SALARY                                                         NUMBER(6)
+
+SQL> insert into customers value(&id,'&name',&age,'&address',&salary)
+  2  ;
+Enter value for id: 
+Enter value for name: 
+Enter value for age: 
+Enter value for address: 
+Enter value for salary: 
+old   1: insert into customers value(&id,'&name',&age,'&address',&salary)
+new   1: insert into customers value(,'',,'',)
+insert into customers value(,'',,'',)
+                            *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* insert into customers value(&id,'&name',&age,'&address',&salary)
+  2  
+SQL> alter table customers
+  2  modify address varchar2(25)
+  3  ;
+
+Table altered.
+
+SQL> desc customers
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ ID                                                    NOT NULL NUMBER(2)
+ NAME                                                  NOT NULL VARCHAR2(20)
+ AGE                                                   NOT NULL NUMBER(2)
+ ADDRESS                                                        VARCHAR2(25)
+ SALARY                                                         NUMBER(6)
+
+SQL> ed
+Wrote file afiedt.buf
+
+line 2 truncated.
+  1* insert into customers value(&id,'&name',&age,'&address',&salary)
+  2  ;
+Enter value for id: 
+Enter value for name: 
+Enter value for age: 
+Enter value for address: 
+Enter value for salary: 
+old   1: insert into customers value(&id,'&name',&age,'&address',&salary)
+new   1: insert into customers value(,'',,'',)
+insert into customers value(,'',,'',)
+                            *
+
+
+
+SQL> select * from customerlist
+  2  ;
+
+NAME            ADDRE   CRATING   CAMOUNT  CBALANCE SALESPERSONBNUM
+--------------- ----- --------- --------- --------- ---------------
+smith           xxx           5      1000      1000             101
+jones           yyy           7      5000      4000             101
+wei             zzz          10     10000     10000
+
+
+
+
+SQL> 
+SQL> /
+Enter value for id: 1
+Enter value for name: smith
+Enter value for age: 25
+Enter value for address: xxx
+Enter value for salary: 1000
+old   1: insert into customers values(&id,'&name',&age,'&address',&salary)
+new   1: insert into customers values(1,'smith',25,'xxx',1000)
+
+1 row created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* insert into customers values(&id,'&name',&age,'&address',&salary)
+SQL> select * from customerlist
+  2  ;
+
+NAME            ADDRE   CRATING   CAMOUNT  CBALANCE SALESPERSONBNUM
+--------------- ----- --------- --------- --------- ---------------
+smith           xxx           5      1000      1000             101
+jones           yyy           7      5000      4000             101
+wei             zzz          10     10000     10000
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* insert into customers values(&id,'&name',&age,'&address',&salary)
+SQL> /
+Enter value for id: 2
+Enter value for name: jones
+Enter value for age: 26
+Enter value for address: yyy
+Enter value for salary: 5000
+old   1: insert into customers values(&id,'&name',&age,'&address',&salary)
+new   1: insert into customers values(2,'jones',26,'yyy',5000)
+
+1 row created.
+
+SQL> /
+Enter value for id: 3
+Enter value for name: wei
+Enter value for age: 27
+Enter value for address: zzz
+Enter value for salary: 10000
+old   1: insert into customers values(&id,'&name',&age,'&address',&salary)
+new   1: insert into customers values(3,'wei',27,'zzz',10000)
+
+1 row created.
+
+SQL> select * from customerlist union customers
+  2  ;
+select * from customerlist union customers
+                                 *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> desc customerlist
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ NAME                                                           VARCHAR2(15)
+ ADDRESS                                                        VARCHAR2(5)
+ CRATING                                                        NUMBER(5)
+ CAMOUNT                                                        NUMBER(5)
+ CBALANCE                                                       NUMBER(6)
+ SALESPERSONBNUM                                                NUMBER(6)
+
+SQL> desc customers
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ ID                                                    NOT NULL NUMBER(2)
+ NAME                                                  NOT NULL VARCHAR2(20)
+ AGE                                                   NOT NULL NUMBER(2)
+ ADDRESS                                                        VARCHAR2(25)
+ SALARY                                                         NUMBER(6)
+
+SQL> alter table
+  2  customers
+  3  modify (name varchar2(15),address varchar2(5))
+  4  ;
+
+Table altered.
+
+SQL> select * from customerlist union customer
+  2  ;
+select * from customerlist union customer
+                                 *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from customerlist union customers
+  2  ;
+select * from customerlist union customers
+                                 *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select id from customerlist union customers
+  2  ;
+select id from customerlist union customers
+                                  *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from customerlist union customers where name.customerlist=name.customers
+  2  ;
+select * from customerlist union customers where name.customerlist=name.customers
+                                 *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+line 2 truncated.
+  1* select name,address from customerlist union customers
+  2  ;
+select name,address from customerlist union customers
+                                            *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select name from customerlist union name from customers
+  2  ;
+select name from customerlist union name from customers
+                                    *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select name from customerlist union select name from customers
+SQL> ;
+  1* select name from customerlist union select name from customers
+SQL> ;
+  1* select name from customerlist union select name from customers
+SQL> /
+
+NAME
+---------------
+jones
+smith
+wei
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from customerlist union select * from customers
+SQL> ;
+  1* select * from customerlist union select * from customers
+SQL> ;
+  1* select * from customerlist union select * from customers
+SQL> ;
+  1* select * from customerlist union select * from customers
+SQL> ;/]
+SP2-0042: unknown command ";/]" - rest of line ignored.
+SQL> /
+select * from customerlist union select * from customers
+*
+ERROR at line 1:
+ORA-01789: query block has incorrect number of result columns
+
+
+SQL> /
+select * from customerlist union select * from customers
+*
+ERROR at line 1:
+ORA-01789: query block has incorrect number of result columns
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from customerlist union select name from customers
+SQL> /
+select * from customerlist union select name from customers
+*
+ERROR at line 1:
+ORA-01789: query block has incorrect number of result columns
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select name from customerlist union select name from customers
+SQL> /
+
+NAME
+---------------
+jones
+smith
+wei
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* insert into customers values(&id,'&name',&age,'&address',&salary)
+SQL> /
+Enter value for id: 4
+Enter value for name: sapan
+Enter value for age: 18
+Enter value for address: aaa
+Enter value for salary: 30000
+old   1: insert into customers values(&id,'&name',&age,'&address',&salary)
+new   1: insert into customers values(4,'sapan',18,'aaa',30000)
+
+1 row created.
+
+SQL> select * from customers
+  2  ;'
+  3  ;
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from customers
+  2  ;
+
+       ID NAME                  AGE ADDRE    SALARY
+--------- --------------- --------- ----- ---------
+        1 smith                  25 xxx        1000
+        2 jones                  26 yyy        5000
+        3 wei                    27 zzz       10000
+        4 sapan                  18 aaa       30000
+
+SQL> select * from customerlist
+  2  ;
+
+NAME            ADDRE   CRATING   CAMOUNT  CBALANCE SALESPERSONBNUM
+--------------- ----- --------- --------- --------- ---------------
+smith           xxx           5      1000      1000             101
+jones           yyy           7      5000      4000             101
+wei             zzz          10     10000     10000
+
+SQL> select name from customers union select name from customerlist
+  2  ;
+
+NAME
+---------------
+jones
+sapan
+smith
+wei
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select name from customers intersect select name from customerlist
+  2  ;
+
+NAME
+---------------
+jones
+smith
+wei
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select name,address from customers intersect select name,address from customerlist
+  2  ;
+
+NAME            ADDRE
+--------------- -----
+jones           yyy
+smith           xxx
+wei             zzz
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select name,address from customers union select name,address from customerlist
+  2  ;
+
+NAME            ADDRE
+--------------- -----
+jones           yyy
+sapan           aaa
+smith           xxx
+wei             zzz
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select name,address from customers minus select name,address from customerlist
+  2  ;
+
+NAME            ADDRE
+--------------- -----
+sapan           aaa

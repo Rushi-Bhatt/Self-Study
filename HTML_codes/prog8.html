@@ -1,0 +1,54 @@
+<html>
+<head>
+<style type="text/css">
+#a1
+{width:50px;}
+
+#a1 div{
+width:10px;
+margin:5px 0;
+padding:5px;
+background-color:red;
+text-align:right;
+border-radius:5px;
+
+}
+
+#a1 div.ease{
+-webkit-transition: 7s ease;
+
+
+}
+#a1:hover div
+{
+
+width:50px;
+
+}
+#a1 div.linear{
+-webkit-transition: 7s linear;
+
+
+}
+#a1 div.ease-in{
+-webkit-transition: 7s ease-in;
+
+
+}
+#a1 div.ease-out{
+-webkit-transition: 7s ease-out;
+
+
+}
+
+</style>
+</head>
+<body>
+<div id="a1">
+<div class="ease">ease</div>
+<div class="linear">linear</div>
+<div class="ease-in">ease-in</div>
+<div class="ease-out">ease-out</div>
+</div>
+</body>
+</html>

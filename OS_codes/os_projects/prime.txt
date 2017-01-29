@@ -1,0 +1,13 @@
+echo "enter the number:"
+read n
+count=0
+for ( i=0 ; i <= `expr $n - 1`; i++ )
+if [ ` expr $n % $i` -eq 0 ]
+then
+count = ` $count + 1`
+fi
+
+if [ $count -eq 0]
+then
+echo "the no is prime"
+fi

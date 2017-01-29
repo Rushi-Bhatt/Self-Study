@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>firstwebpage</title>
+<style>
+</style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+      <ul>
+	<li><a href="">item1</a></li>
+	<li><a href="">item2</a></li>
+	<li><a href="">item3</a></li>
+	</ul>
+ </nav> 		
+</header>
+<section>
+<article>
+<p> this is text 1..........</p>
+</article>
+</section>
+
+<section>
+<artcle>
+<p>this is text 2.........</p>
+</article>
+</section>
+
+
+<aside>
+<h2>sidebar</h2>
+<p>aaaaaaaaaaaaaaaaaaaaaaaa</p>
+</aside>
+
+
+
+<footer>this is footer</footer>
+
+</body>
+</html>

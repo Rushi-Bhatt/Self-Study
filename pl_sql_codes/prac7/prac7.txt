@@ -1,0 +1,103 @@
+
+SQL> select * from departmnt;
+
+  DEPT_NO NAME
+--------- --------
+      123 CE
+      124 EC
+      125 CL
+      126 IT
+      127 EE
+          CH
+      128 ME
+
+7 rows selected.
+
+SQL> select * from emp;
+
+   EMP_NO NAME          DEPTNO
+--------- ---------- ---------
+      100 Aman             123
+      101 Ankit            124
+      102 Aakash           125
+      104 Chirag           127
+      103 Adit             126
+      105 ME               128
+
+6 rows selected.
+
+
+SQL> select * from emp inner join departmnt on emp.deptno=departmnt.dept_no;
+
+   EMP_NO NAME          DEPTNO   DEPT_NO NAME
+--------- ---------- --------- --------- --------
+      100 Aman             123       123 CE
+      101 Ankit            124       124 EC
+      102 Aakash           125       125 CL
+      103 Adit             126       126 IT
+      104 Chirag           127       127 EE
+      105 ME               128       128 ME
+
+6 rows selected.
+
+SQL> select * from emp inner join departmnt on departmnt.dept_no=emp.deptno where
+;
+
+   EMP_NO NAME          DEPTNO   DEPT_NO NAME
+--------- ---------- --------- --------- --------
+      100 Aman             123       123 CE
+      101 Ankit            124       124 EC
+      102 Aakash           125       125 CL
+      103 Adit             126       126 IT
+
+SQL> select * from departmnt left join emp on emp.deptno=departmnt.dept_no;
+
+  DEPT_NO NAME        EMP_NO NAME          DEPTNO
+--------- -------- --------- ---------- ---------
+      123 CE             100 Aman             123
+      124 EC             101 Ankit            124
+      125 CL             102 Aakash           125
+      127 EE             104 Chirag           127
+      126 IT             103 Adit             126
+      128 ME             105 ME               128
+          CH
+
+7 rows selected.
+
+SQL> select * from emp right join departmnt on emp.deptno=departmnt.dept_no;
+
+   EMP_NO NAME          DEPTNO   DEPT_NO NAME
+--------- ---------- --------- --------- --------
+      100 Aman             123       123 CE
+      101 Ankit            124       124 EC
+      102 Aakash           125       125 CL
+      104 Chirag           127       127 EE
+      103 Adit             126       126 IT
+      105 ME               128       128 ME
+                                         CH
+
+7 rows selected.
+
+SQL> alter table departmnt rename column dept_no to deptno;
+
+Table altered.
+
+SQL> select * from emp natural join departmnt;
+
+NAME        DEPTNO    EMP_NO
+-------- --------- ---------
+ME             128       105
+
+SQL> select * from departmnt;
+
+   DEPTNO NAME
+--------- --------
+      123 CE
+      124 EC
+      125 CL
+      126 IT
+      127 EE
+          CH
+      128 ME
+
+7 rows selected.

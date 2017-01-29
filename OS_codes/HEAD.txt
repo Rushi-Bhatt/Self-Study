@@ -1,0 +1,12 @@
+
+
+clear
+
+exec < $2
+nol=$1
+while [ $nol -ne 0 ]
+do
+        read line
+        echo $line
+        nol=`expr $nol - 1`
+done

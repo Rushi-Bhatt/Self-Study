@@ -1,0 +1,72 @@
+vector graphics-svg tag
+local storage
+canvas:
+<canvas id= ,width= ,height= >
+
+for making rectangle
+fillRect(x,y,width,height);
+strokeRect(x,y,width,height);
+clearRect(x,y,width,height);
+
+paths;;
+beginPath()
+closePath()
+stroke
+arc(x,y,startangle.endangle,anticlockwise)
+ for teriangle
+ctx.lintTo(x,y)
+
+
+<aside>
+</aside>,,,...for sidebar  
+ 
+input elements                                   //placeholder can be used with any type
+
+input type="text"
+input type="email" value="sef@rsf.com"
+input type="date"
+input tyoe="range" min="" max="" value=""
+input tyoe="search" results=10 placeholder=""
+input type="color"
+input type="tel"
+input type="number" step="" min="" max=""
+
+data list:
+<form action="#" method="get">
+<input list=""colledges" name="colledges">        //for auto suggest
+<datalist id="colledges">
+<option value="1">
+<option value="2">
+<option value="3">
+</datalist>
+
+ ->output tag
+->audio and video
+
+<audio controls>
+<source src="audio.mp3" type"audio/mpeg"
+your audio is not supported.
+</audio>
+
+->   <video width="" height="" controls>
+<source src="vid.mp4" type"video/mp4"
+your video is not supported.
+</video>
+
+---
+
+svg tag:
+<svg id="s1" width="" height="" viewBox="0 0 200 300">
+<rect x="" y="" rx="" tx="" width="" height="" fill="" stroke="" stroke-width=""/>
+<path d="M 950
+</svg>
+
+css
+
+go to any web page->richt click->inspect element
++firebug
+
+local storage and session storage:::::
+
+ritesh@iwillstudy.com
+mail@gdgdaiict.com

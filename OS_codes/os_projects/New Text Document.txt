@@ -1,0 +1,13 @@
+echo "PLEASE ENTER THE LINES TO READ"
+read a
+c=1
+exec < raj
+while read line
+do
+    if [ $c -le $a ]
+    then
+    echo "$line"
+    fi
+
+c=$((c+1))
+done <"rushi"

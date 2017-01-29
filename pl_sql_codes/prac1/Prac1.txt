@@ -1,0 +1,342 @@
+
+
+
+  1* create table hospital( No number(3), name varchar(25), age number(3), department varchar(25), d
+SQL> /
+
+Table created.
+
+SQL> desc hospital
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ NO                                                             NUMBER(3)
+ NAME                                                           VARCHAR2(25)
+ AGE                                                            NUMBER(3)
+ DEPARTMENT                                                     VARCHAR2(25)
+ DATEOFADM                                                      DATE
+ CHARGES                                                        NUMBER(5)
+ TYPE                                                           CHAR(1)
+
+SQL> insert into hospital values( &No, '&name', '&age', '&department', &dateofadm, '&charges', '&typ
+e');
+Enter value for no: 1
+Enter value for name: Sandeep
+Enter value for age: 65
+Enter value for department: Surgery
+Enter value for dateofadm: 23-feb-98
+Enter value for charges: 300
+Enter value for type: M
+old   1: insert into hospital values( &No, '&name', '&age', '&department', &dateofadm, '&charges', '
+new   1: insert into hospital values( 1, 'Sandeep', '65', 'Surgery', 23-feb-98, '300', 'M')
+insert into hospital values( 1, 'Sandeep', '65', 'Surgery', 23-feb-98, '300', 'M')
+                                                               *
+ERROR at line 1:
+ORA-00984: column not allowed here
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* insert into hospital values( &No, '&name', '&age', '&department', '&dateofadm', '&charges', '&t
+SQL> /
+Enter value for no: 1
+Enter value for name: Sandeep
+Enter value for age: 65
+Enter value for department: Surgery
+Enter value for dateofadm: 23-feb-98
+Enter value for charges: 300
+Enter value for type: M
+old   1: insert into hospital values( &No, '&name', '&age', '&department', '&dateofadm', '&charges',
+new   1: insert into hospital values( 1, 'Sandeep', '65', 'Surgery', '23-feb-98', '300', 'M')
+
+1 row created.
+
+SQL> /
+Enter value for no: 2
+Enter value for name: Ravina
+Enter value for age: 24
+Enter value for department: Orthopedic
+Enter value for dateofadm: 28-jan-98
+Enter value for charges: 200
+Enter value for type: F
+old   1: insert into hospital values( &No, '&name', '&age', '&department', '&dateofadm', '&charges',
+new   1: insert into hospital values( 2, 'Ravina', '24', 'Orthopedic', '28-jan-98', '200', 'F')
+
+1 row created.
+
+SQL> /
+Enter value for no: 3
+Enter value for name: Karan
+Enter value for age: 45
+Enter value for department: Orthopedic
+Enter value for dateofadm: 19-feb-98
+Enter value for charges: 200
+Enter value for type: M
+old   1: insert into hospital values( &No, '&name', '&age', '&department', '&dateofadm', '&charges',
+new   1: insert into hospital values( 3, 'Karan', '45', 'Orthopedic', '19-feb-98', '200', 'M')
+
+1 row created.
+
+SQL> /
+Enter value for no: 4
+Enter value for name: Tarun
+Enter value for age: 12
+Enter value for department: Surgery
+Enter value for dateofadm: 01-jan-98
+Enter value for charges: 300
+Enter value for type: M
+old   1: insert into hospital values( &No, '&name', '&age', '&department', '&dateofadm', '&charges',
+new   1: insert into hospital values( 4, 'Tarun', '12', 'Surgery', '01-jan-98', '300', 'M')
+
+1 row created.
+
+SQL> /
+Enter value for no: 5
+Enter value for name: Zubin
+Enter value for age: 36
+Enter value for department: ENT
+Enter value for dateofadm: 12-jan-98
+Enter value for charges: 250
+Enter value for type: M
+old   1: insert into hospital values( &No, '&name', '&age', '&department', '&dateofadm', '&charges',
+new   1: insert into hospital values( 5, 'Zubin', '36', 'ENT', '12-jan-98', '250', 'M')
+
+1 row created.
+
+SQL> /
+Enter value for no: 6
+Enter value for name: Ketaki
+Enter value for age: 16
+Enter value for department: ENT
+Enter value for dateofadm: 24-feb-98
+Enter value for charges: 300
+Enter value for type: F
+old   1: insert into hospital values( &No, '&name', '&age', '&department', '&dateofadm', '&charges',
+new   1: insert into hospital values( 6, 'Ketaki', '16', 'ENT', '24-feb-98', '300', 'F')
+
+1 row created.
+
+SQL> /
+Enter value for no: 7
+Enter value for name: Ankita
+Enter value for age: 29
+Enter value for department: Cardiology
+Enter value for dateofadm: 20-feb-98
+Enter value for charges: 800
+Enter value for type: F
+old   1: insert into hospital values( &No, '&name', '&age', '&department', '&dateofadm', '&charges',
+new   1: insert into hospital values( 7, 'Ankita', '29', 'Cardiology', '20-feb-98', '800', 'F')
+
+1 row created.
+
+SQL> /
+Enter value for no: 8
+Enter value for name: Zareen
+Enter value for age: 45
+Enter value for department: Gynaecology
+Enter value for dateofadm: 22-feb-98
+Enter value for charges: 300
+Enter value for type: F
+old   1: insert into hospital values( &No, '&name', '&age', '&department', '&dateofadm', '&charges',
+new   1: insert into hospital values( 8, 'Zareen', '45', 'Gynaecology', '22-feb-98', '300', 'F')
+
+1 row created.
+
+SQL> /
+Enter value for no: 9
+Enter value for name: Kush
+Enter value for age: 19
+Enter value for department: Cardiology
+Enter value for dateofadm: 13-feb-98
+Enter value for charges: 800
+Enter value for type: M
+old   1: insert into hospital values( &No, '&name', '&age', '&department', '&dateofadm', '&charges',
+new   1: insert into hospital values( 9, 'Kush', '19', 'Cardiology', '13-feb-98', '800', 'M')
+
+1 row created.
+
+SQL> /
+Enter value for no: 10
+Enter value for name: Shailya
+Enter value for age: 31
+Enter value for department: Nuclear Machine
+Enter value for dateofadm: 19-feb-98
+Enter value for charges: 400
+Enter value for type: M
+old   1: insert into hospital values( &No, '&name', '&age', '&department', '&dateofadm', '&charges',
+new   1: insert into hospital values( 10, 'Shailya', '31', 'Nuclear Machine', '19-feb-98', '400', 'M
+
+1 row created.
+
+SQL> select * from hospital;
+
+       NO NAME                            AGE DEPARTMENT                DATEOFADM   CHARGES T
+--------- ------------------------- --------- ------------------------- --------- --------- -
+        1 Sandeep                          65 Surgery                   23-FEB-98       300 M
+        2 Ravina                           24 Orthopedic                28-JAN-98       200 F
+        3 Karan                            45 Orthopedic                19-FEB-98       200 M
+        4 Tarun                            12 Surgery                   01-JAN-98       300 M
+        5 Zubin                            36 ENT                       12-JAN-98       250 M
+        6 Ketaki                           16 ENT                       24-FEB-98       300 F
+        7 Ankita                           29 Cardiology                20-FEB-98       800 F
+        8 Zareen                           45 Gynaecology               22-FEB-98       300 F
+        9 Kush                             19 Cardiology                13-FEB-98       800 M
+       10 Shailya                          31 Nuclear Machine           19-FEB-98       400 M
+
+10 rows selected.
+
+SQL> select * from hospital where department='Cardiology'
+  2  ;
+
+       NO NAME                            AGE DEPARTMENT                DATEOFADM   CHARGES T
+--------- ------------------------- --------- ------------------------- --------- --------- -
+        7 Ankita                           29 Cardiology                20-FEB-98       800 F
+        9 Kush                             19 Cardiology                13-FEB-98       800 M
+
+SQL> select * from hospital where department='Gynaecology';
+
+       NO NAME                            AGE DEPARTMENT                DATEOFADM   CHARGES T
+--------- ------------------------- --------- ------------------------- --------- --------- -
+        8 Zareen                           45 Gynaecology               22-FEB-98       300 F
+
+SQL> select * from hospital where department='ENT' and type='F';
+
+       NO NAME                            AGE DEPARTMENT                DATEOFADM   CHARGES T
+--------- ------------------------- --------- ------------------------- --------- --------- -
+        6 Ketaki                           16 ENT                       24-FEB-98       300 F
+
+SQL> select * from hospital where department='Orthopedic' and type='F';
+
+       NO NAME                            AGE DEPARTMENT                DATEOFADM   CHARGES T
+--------- ------------------------- --------- ------------------------- --------- --------- -
+        2 Ravina                           24 Orthopedic                28-JAN-98       200 F
+
+SQL> select * from hospital where type='F';
+
+       NO NAME                            AGE DEPARTMENT                DATEOFADM   CHARGES T
+--------- ------------------------- --------- ------------------------- --------- --------- -
+        2 Ravina                           24 Orthopedic                28-JAN-98       200 F
+        6 Ketaki                           16 ENT                       24-FEB-98       300 F
+        7 Ankita                           29 Cardiology                20-FEB-98       800 F
+        8 Zareen                           45 Gynaecology               22-FEB-98       300 F
+
+SQL> select name, age, charges from hospital where type='F';
+
+NAME                            AGE   CHARGES
+------------------------- --------- ---------
+Ravina                           24       200
+Ketaki                           16       300
+Ankita                           29       800
+Zareen                           45       300
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select name, age, charges from hospital where type='M'
+SQL> 
+SQL> /
+
+NAME                            AGE   CHARGES
+------------------------- --------- ---------
+Sandeep                          65       300
+Karan                            45       200
+Tarun                            12       300
+Zubin                            36       250
+Kush                             19       800
+Shailya                          31       400
+
+6 rows selected.
+
+SQL> select * from hospital order by dateofadm;
+
+       NO NAME                            AGE DEPARTMENT                DATEOFADM   CHARGES T
+--------- ------------------------- --------- ------------------------- --------- --------- -
+        4 Tarun                            12 Surgery                   01-JAN-98       300 M
+        5 Zubin                            36 ENT                       12-JAN-98       250 M
+        2 Ravina                           24 Orthopedic                28-JAN-98       200 F
+        9 Kush                             19 Cardiology                13-FEB-98       800 M
+        3 Karan                            45 Orthopedic                19-FEB-98       200 M
+       10 Shailya                          31 Nuclear Machine           19-FEB-98       400 M
+        7 Ankita                           29 Cardiology                20-FEB-98       800 F
+        8 Zareen                           45 Gynaecology               22-FEB-98       300 F
+        1 Sandeep                          65 Surgery                   23-FEB-98       300 M
+        6 Ketaki                           16 ENT                       24-FEB-98       300 F
+
+10 rows selected.
+
+SQL> select count(age) from hospital where age<30;
+
+COUNT(AGE)
+----------
+         5
+
+SQL> select count(age) from hospital where age>28;
+
+COUNT(AGE)
+----------
+         6
+
+SQL> select * from hospital where name like '%n';
+
+       NO NAME                            AGE DEPARTMENT                DATEOFADM   CHARGES T
+--------- ------------------------- --------- ------------------------- --------- --------- -
+        3 Karan                            45 Orthopedic                19-FEB-98       200 M
+        4 Tarun                            12 Surgery                   01-JAN-98       300 M
+        5 Zubin                            36 ENT                       12-JAN-98       250 M
+        8 Zareen                           45 Gynaecology               22-FEB-98       300 F
+
+SQL> insert to hospital values(11, 'Aftab', 24, 'Surgery', '25-feb-98', 300, 'M');
+insert to hospital values(11, 'Aftab', 24, 'Surgery', '25-feb-98', 300, 'M')
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* insert into hospital values(11, 'Aftab', 24, 'Surgery', '25-feb-98', 300, 'M')
+SQL> 
+SQL> 
+SQL> select * from hospital
+  2  ;
+
+       NO NAME                            AGE DEPARTMENT                DATEOFADM   CHARGES T
+--------- ------------------------- --------- ------------------------- --------- --------- -
+        1 Sandeep                          65 Surgery                   23-FEB-98       300 M
+        2 Ravina                           24 Orthopedic                28-JAN-98       200 F
+        3 Karan                            45 Orthopedic                19-FEB-98       200 M
+        4 Tarun                            12 Surgery                   01-JAN-98       300 M
+        5 Zubin                            36 ENT                       12-JAN-98       250 M
+        6 Ketaki                           16 ENT                       24-FEB-98       300 F
+        7 Ankita                           29 Cardiology                20-FEB-98       800 F
+        8 Zareen                           45 Gynaecology               22-FEB-98       300 F
+        9 Kush                             19 Cardiology                13-FEB-98       800 M
+       10 Shailya                          31 Nuclear Machine           19-FEB-98       400 M
+
+10 rows selected.
+
+SQL> insert into hospital values(11, 'Aftab', 24, 'Surgery', '25-feb-98', 300, 'M');
+
+1 row created.
+
+SQL> select * from hospital
+  2  ;
+
+       NO NAME                            AGE DEPARTMENT                DATEOFADM   CHARGES T
+--------- ------------------------- --------- ------------------------- --------- --------- -
+        1 Sandeep                          65 Surgery                   23-FEB-98       300 M
+        2 Ravina                           24 Orthopedic                28-JAN-98       200 F
+        3 Karan                            45 Orthopedic                19-FEB-98       200 M
+        4 Tarun                            12 Surgery                   01-JAN-98       300 M
+        5 Zubin                            36 ENT                       12-JAN-98       250 M
+        6 Ketaki                           16 ENT                       24-FEB-98       300 F
+        7 Ankita                           29 Cardiology                20-FEB-98       800 F
+        8 Zareen                           45 Gynaecology               22-FEB-98       300 F
+        9 Kush                             19 Cardiology                13-FEB-98       800 M
+       10 Shailya                          31 Nuclear Machine           19-FEB-98       400 M
+       11 Aftab                            24 Surgery                   25-FEB-98       300 M
+
+11 rows selected.
+
+SQL> ]

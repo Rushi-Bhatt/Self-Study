@@ -1,0 +1,15 @@
+echo enter n:
+read n
+a=0
+b=1
+echo $a
+echo $b
+count=2
+while [ $count -le $n ]
+do
+c=`expr $a + $b`
+a=$b
+b=$c
+count=`expr $count + 1`
+echo $c
+done

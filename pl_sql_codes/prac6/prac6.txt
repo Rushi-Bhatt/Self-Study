@@ -1,0 +1,58 @@
+
+SQL> select * from departmnt;
+
+   DEPTNO NAME
+--------- --------
+      123 CE
+      124 EC
+      125 CL
+      126 IT
+      127 EE
+      129 CH
+      128 ME
+
+7 rows selected.
+
+SQL> alter table departmnt add primary key(deptno);
+
+Table altered.
+
+
+
+SQL> alter table emp add foreign key(deptno) references departmnt(deptno);
+
+Table altered.
+
+SQL> delete from emp where deptno=125;
+
+1 row deleted.
+
+SQL> select * from departmnt;
+
+   DEPTNO NAME
+--------- --------
+      123 CE
+      124 EC
+      125 CL
+      126 IT
+      127 EE
+      129 CH
+      128 ME
+
+7 rows selected.
+
+SQL> select * from emp;
+
+   EMP_NO NAME          DEPTNO
+--------- ---------- ---------
+      100 Aman             123
+      101 Ankit            124
+      104 Chirag           127
+      103 Adit             126
+      105 ME               128
+
+SQL> delete from departmnt where deptno=123;
+delete from departmnt where deptno=123
+*
+ERROR at line 1:
+ORA-02292: integrity constraint (BCE11007.SYS_C008240) violated - child record found

@@ -1,0 +1,103 @@
+Practical 2: Student table
+
+a)
+SQL> select * from student where department = 'History';
+
+       NO NAME          AGE      DEPARTMENT      DATEOFADM      FEES T
+--------- ---------------     ---------   ---------------               ---------                  --------- -
+        3 Shikha                    23          History               25-FEB-97            210     F
+
+
+b)
+SQL> select name from student where department = 'Hindi' and type = 'F';
+
+NAME
+---------------
+Shalini
+
+
+c)
+SQL> select name from student order by name desc;
+
+NAME
+---------------
+Shikha
+Shalini
+Sanjay
+Pankaj
+Ankita
+
+
+d)
+SQL> select name,fees,age from student where type = 'F';
+
+NAME                 FEES       AGE
+---------------         ---------    ---------
+Shikha                    210        23
+Shalini                    200        21
+Ankita                    300        23
+
+
+e)
+ SQL> select count(*) as Age21 from student where age>21;
+
+    AGE21
+---------
+        4
+
+f)
+SQL> select * from student;
+
+       NO NAME                  AGE DEPARTMENT      DATEOFADM      FEES T
+--------- --------------- --------- --------------- --------- --------- -
+        1 Pankaj                 24 Computer        10-JAN-97       120 M
+        2 Sanjay                 22 Hindi           12-DEC-96       300 M
+        3 Shikha                 23 History         25-FEB-97       210 F
+        4 Shalini                21 Hindi           24-MAR-98       200 F
+        5 Ankita                 23 Computer        23-MAR-98       300 F
+
+SQL> update student set name = 'Shhikha' where name='Shikha';
+
+1 row updated.
+
+SQL> select * from student;
+
+       NO NAME                  AGE DEPARTMENT      DATEOFADM      FEES T
+--------- --------------- --------- --------------- --------- --------- -
+        1 Pankaj                 24 Computer        10-JAN-97       120 M
+        2 Sanjay                 22 Hindi           12-DEC-96       300 M
+        3 Shhikha                23 History         25-FEB-97       210 F
+        4 Shalini                21 Hindi           24-MAR-98       200 F
+        5 Ankita                 23 Computer        23-MAR-98       300 F
+
+
+g)
+SQL> create table student1(no number(2),name varchar(15),department varchar(15),dateofadm date);
+
+Table created.
+
+SQL> insert into student1 select no,name,department,dateofadm from student;
+
+5 rows created.
+
+SQL> select * from student1;
+
+       NO NAME            DEPARTMENT      DATEOFADM
+--------- --------------- --------------- ---------
+        1 Pankaj          Computer        10-JAN-97
+        2 Sanjay          Hindi           12-DEC-96
+        3 Shhikha         History         25-FEB-97
+        4 Shalini         Hindi           24-MAR-98
+        5 Ankita          Computer        23-MAR-98
+
+
+h)
+SQL> select name from student where name like 'S%';
+
+NAME
+---------------
+Sanjay
+Shhikha
+Shalini
+
+

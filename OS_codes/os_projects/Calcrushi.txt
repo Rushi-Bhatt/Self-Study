@@ -1,0 +1,31 @@
+echo enter first no
+read no1
+echo enter second no
+read no2
+echo which op u wanna perform:
+echo 1. for addition
+echo 2. for subtraction
+echo 3. for multiplication
+echo 4. for division
+read choice
+if [ $choice -eq 1 ]
+then
+ answer=`expr $no1 + $no2`
+echo "answer is:"
+echo $answer
+fi
+if  [ $choice -eq 2 ]
+then answer=`expr $no1 - $no2`
+echo "answer is:"
+echo $answer
+fi
+if  [ $choice -eq 3 ]
+then answer=`expr $no1 \* $no2`
+echo "answer is:"
+echo $answer
+fi
+if  [ $choice -eq 4 ]
+then answer=`expr $no1 / $no2`
+echo "answer is:"
+echo $answer
+fi

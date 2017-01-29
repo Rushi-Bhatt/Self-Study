@@ -1,0 +1,67 @@
+ch=0
+while [ $ch -ne 6 ]
+do
+echo 'MENU'
+echo '1. Creating a Directory'
+echo '2. Deleting a Directory'
+echo '3. Moving a Directory'
+echo '4. Copying a Directory'
+echo '5. Renaming a Directory'
+echo '6. Exit'
+echo 'Enter your choice'
+read ch
+
+case $ch in
+
+1)
+        echo -e 'Enter the name of the directory: '
+        read name
+        mkdir $name
+        ;;
+2)
+        echo -e 'Enter the path of directory: '
+        read path1
+        if [ -d $path1 ]
+        then
+        rmdir $path1
+        fi
+        ;;
+3)
+        echo -e 'Enter the path of the directory to be moved: '
+        read path1
+        if [ -d $path1 ]
+        then
+        echo -e 'Enter the new path: '
+        read path2
+        mv $path1 $path2
+        fi
+        ;;
+4)
+        echo -e 'Enter the path of the directory to be copied: '
+        read path1
+        if [ -d $path1 ]
+        then
+        echo -e 'Enter the new path: '
+        read path2
+        cp -R $path1 $path2
+        fi
+        ;;
+5)
+        echo -e 'Enter the path of the directory to be renamed: '
+        read path1
+        if [ -d $path1 ]
+        then
+        echo -e 'Enter new name: '
+        read path2
+        mv $path1 $path2
+        fi
+        ;;
+6)
+        ch=6
+        ;;
+
+*)
+        echo -e 'Invalid Input'
+        ;;
+esac
+done

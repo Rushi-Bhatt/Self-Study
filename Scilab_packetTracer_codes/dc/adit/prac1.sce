@@ -1,0 +1,14 @@
+t=0:100
+a=0;
+x=1*sin(2*%pi*t/100+2*%pi*a/360);
+figure;
+plot(t,x);
+b=0;
+y=1*sin(2*%pi*t/100+2*%pi*b/360);
+figure;
+plot(t,y);
+z=x+y;
+figure;
+plot(t,z);
+figure;
+plot(x,z);

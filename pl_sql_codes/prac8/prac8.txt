@@ -1,0 +1,45 @@
+SQL> create view v4 as select * from st_attendance;
+
+View created.
+
+SQL> desc v4;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ RNO                                                   NOT NULL NUMBER(3)
+ NAME                                                           VARCHAR2(10)
+ ATTENDANCE                                                     VARCHAR2(1)
+
+
+SQL> select * from v1;
+
+   ROLLNO     MARKS
+--------- ---------
+        1        90
+        2        90
+        3        91
+        4        92
+        5        98
+
+SQL> select * from v2;
+
+   ROLLNO     MARKS A
+--------- --------- -
+        1        90 p
+        2        90 a
+        3        91 p
+        4        92 a
+        5        98 p
+
+SQL> select * from v3;
+
+  Roll_No     Marks
+--------- ---------
+        1        90
+        2        90
+        3        91
+        4        92
+        5        98
+
+
+
+

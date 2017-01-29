@@ -1,0 +1,19 @@
+
+
+clear
+
+exec<$2
+n=$1
+total=`wc -l $2|cut -d" " -f1` #cut -c 1-2
+lines2print=`expr $total - $n`
+while [ $lines2print -gt 0 ]
+do
+        read line
+        lines2print=`expr $lines2print - 1`
+done
+while [ $n -gt 0 ]
+do
+        read line
+        echo $line
+        n=`expr $n - 1`
+done

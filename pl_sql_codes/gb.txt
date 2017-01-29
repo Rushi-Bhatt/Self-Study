@@ -1,0 +1,48 @@
+
+SQL> select * from departmnt;
+
+  DEPT_NO NAME
+--------- --------
+      123 CE
+      124 EC
+      125 CL
+      126 IT
+      127 EE
+          CH
+
+6 rows selected.
+
+
+SQL> select name,max(dept_no) from departmnt group by name;
+
+NAME     MAX(DEPT_NO)
+-------- ------------
+CH
+IT                126
+EE                127
+CL                125
+CE                123
+EC                124
+
+6 rows selected.
+
+SQL> select * from emp;
+
+    EMPNO NAME          DEPTNO
+--------- ---------- ---------
+      100 Aman             123
+      101 Ankit            124
+      102 Aakash           125
+      104 Chirag           127
+      103 Adit             126
+
+
+SQL> select name,count(empno) from emp group by name;
+
+NAME       COUNT(EMPNO)
+---------- ------------
+Ankit                 1
+Aakash                1
+Chirag                1
+Adit                  1
+Aman                  1

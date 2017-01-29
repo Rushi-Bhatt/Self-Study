@@ -1,0 +1,23 @@
+practical 1:sin and cos wave generator:
+ two methods:
+1.by coding
+2.by xcos
+
+here we need to supply three main parameters mainly required
+1.amplitude::: max. pic to pic value your signal can get
+2.frequency::: cycles per second for your periodic signal.
+3.phase::: initial position of your signal w.r.to 0 i.e. from which position your signal starts
+
+practical 2:composite signals:
+suppose x is sin and y is cosine signal , so we can combine them to get a composite signal.
+we can find different harmonics of that perticular composite.
+ 
+z=x+y
+plot(z)
+
+practical 3: fft,ifft,fftshift
+fft will give you the fourier transform form of data signal, ie frequency domain representation
+ifft will invert the above process, i.e if sender uses fft then receiver uses ifft to bring the original signal back.
+fftshift simply shifts the referenece.
+
+

@@ -1,0 +1,527 @@
+SQL> create table customer( name number(15),address varchar2(5),crating number(5), camount number(5),cbalance number(6),salespersonbnum number(6))
+  2  /
+create table customer( name number(15),address varchar2(5),crating number(5), camount number(5),cbalance number(6),salespersonbnum number(6))
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* create table customerlist( name number(15),address varchar2(5),crating number(5), camount number(5),cbalance number(6),salespersonbnum number(6))
+SQL> /
+
+Table created.
+
+SQL> desc customerlist
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ NAME                                                           NUMBER(15)
+ ADDRESS                                                        VARCHAR2(5)
+ CRATING                                                        NUMBER(5)
+ CAMOUNT                                                        NUMBER(5)
+ CBALANCE                                                       NUMBER(6)
+ SALESPERSONBNUM                                                NUMBER(6)
+
+SQL> modify customerlist(name varchar2(15));
+SP2-0042: unknown command beginning "modify cus..." - rest of line ignored.
+SQL> alter customerlist modify(name varchar2(15));
+alter customerlist modify(name varchar2(15))
+      *
+ERROR at line 1:
+ORA-00940: invalid ALTER command 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* alter table customerlist modify(name varchar2(15))
+SQL> /
+
+Table altered.
+
+SQL> desc customerlist
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ NAME                                                           VARCHAR2(15)
+ ADDRESS                                                        VARCHAR2(5)
+ CRATING                                                        NUMBER(5)
+ CAMOUNT                                                        NUMBER(5)
+ CBALANCE                                                       NUMBER(6)
+ SALESPERSONBNUM                                                NUMBER(6)
+
+SQL> alter table customerlist add(no number(3));
+
+Table altered.
+
+SQL> desc customerlist
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ NAME                                                           VARCHAR2(15)
+ ADDRESS                                                        VARCHAR2(5)
+ CRATING                                                        NUMBER(5)
+ CAMOUNT                                                        NUMBER(5)
+ CBALANCE                                                       NUMBER(6)
+ SALESPERSONBNUM                                                NUMBER(6)
+ NO                                                             NUMBER(3)
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* alter table customerlist drop(no number(3))
+SQL> /
+alter table customerlist drop(no number(3))
+                                 *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* alter table customerlist drop(no)
+SQL> /
+
+Table altered.
+
+SQL> desc customerlist
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ NAME                                                           VARCHAR2(15)
+ ADDRESS                                                        VARCHAR2(5)
+ CRATING                                                        NUMBER(5)
+ CAMOUNT                                                        NUMBER(5)
+ CBALANCE                                                       NUMBER(6)
+ SALESPERSONBNUM                                                NUMBER(6)
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* alter table customerlist drop(no)
+SQL> insert into customerlist values('&name' , '&address' ,&arating,&camount,&cbalance,&salesperson)
+  2  ;
+Enter value for name: smith
+Enter value for address: xxx
+Enter value for arating: 5
+Enter value for camount: 1000
+Enter value for cbalance: 1000
+Enter value for salesperson: 101
+old   1: insert into customerlist values('&name' , '&address' ,&arating,&camount,&cbalance,&salesperson)
+new   1: insert into customerlist values('smith' , 'xxx' ,5,1000,1000,101)
+
+1 row created.
+
+SQL> /
+Enter value for name: jones
+Enter value for address: yyy
+Enter value for arating: 7
+Enter value for camount: 5000
+Enter value for cbalance: 4000
+Enter value for salesperson: 101
+old   1: insert into customerlist values('&name' , '&address' ,&arating,&camount,&cbalance,&salesperson)
+new   1: insert into customerlist values('jones' , 'yyy' ,7,5000,4000,101)
+
+1 row created.
+
+SQL> /
+Enter value for name: wei
+Enter value for address: zzz
+Enter value for arating: 10
+Enter value for camount: 10000
+Enter value for cbalance: 10
+Enter value for salesperson: 
+old   1: insert into customerlist values('&name' , '&address' ,&arating,&camount,&cbalance,&salesperson)
+new   1: insert into customerlist values('wei' , 'zzz' ,10,10000,10,)
+insert into customerlist values('wei' , 'zzz' ,10,10000,10,)
+                                                           *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* insert into customerlist values('&name' , '&address' ,&crating,&camount,&cbalance,&salesperson)
+  2  ;
+Enter value for name: wei
+Enter value for address: zzz
+Enter value for crating: 10
+Enter value for camount: 10000
+Enter value for cbalance: 10000
+Enter value for salesperson: null
+old   1: insert into customerlist values('&name' , '&address' ,&crating,&camount,&cbalance,&salesperson)
+new   1: insert into customerlist values('wei' , 'zzz' ,10,10000,10000,null)
+
+1 row created.
+
+SQL> select * from customerlist
+  2  ;
+
+NAME            ADDRE   CRATING   CAMOUNT  CBALANCE SALESPERSONBNUM                                 
+--------------- ----- --------- --------- --------- ---------------                                 
+smith           xxx           5      1000      1000             101                                 
+jones           yyy           7      5000      4000             101                                 
+wei             zzz          10     10000     10000                                                 
+
+SQL> create table salesperson(no number(3),name varchar2(15),address varchar2(5),office number(3))
+  2  ;
+
+Table created.
+
+SQL> insert into salesperson values(&no,'&name','&address',&office)
+  2  ;
+Enter value for no: 101
+Enter value for name: johnson
+Enter value for address: aaa
+Enter value for office: 23
+old   1: insert into salesperson values(&no,'&name','&address',&office)
+new   1: insert into salesperson values(101,'johnson','aaa',23)
+
+1 row created.
+
+SQL> /
+Enter value for no: 102
+Enter value for name: miller
+Enter value for address: bbb
+Enter value for office: 26
+old   1: insert into salesperson values(&no,'&name','&address',&office)
+new   1: insert into salesperson values(102,'miller','bbb',26)
+
+1 row created.
+
+SQL> desc customerlist
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ NAME                                                           VARCHAR2(15)
+ ADDRESS                                                        VARCHAR2(5)
+ CRATING                                                        NUMBER(5)
+ CAMOUNT                                                        NUMBER(5)
+ CBALANCE                                                       NUMBER(6)
+ SALESPERSONBNUM                                                NUMBER(6)
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* insert into salesperson values(&no,'&name','&address',&office)
+  2  /
+Enter value for no: 
+Enter value for name: 
+Enter value for address: 
+Enter value for office: 
+old   1: insert into salesperson values(&no,'&name','&address',&office)
+new   1: insert into salesperson values(,'','',)
+insert into salesperson values(,'','',)
+                               *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> desc salesperson
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ NO                                                             NUMBER(3)
+ NAME                                                           VARCHAR2(15)
+ ADDRESS                                                        VARCHAR2(5)
+ OFFICE                                                         NUMBER(3)
+
+SQL> 
+SQL> select * from customerlist
+  2  ;
+
+NAME            ADDRE   CRATING   CAMOUNT  CBALANCE SALESPERSONBNUM                                 
+--------------- ----- --------- --------- --------- ---------------                                 
+smith           xxx           5      1000      1000             101                                 
+jones           yyy           7      5000      4000             101                                 
+wei             zzz          10     10000     10000                                                 
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from salesperson
+  2  ;
+
+       NO NAME            ADDRE    OFFICE                                                           
+--------- --------------- ----- ---------                                                           
+      101 johnson         aaa          23                                                           
+      102 miller          bbb          26                                                           
+
+SQL> select * from customerlist natural join salesperson
+  2  ;
+
+no rows selected
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from customerlist natural join salesperson on salespersonnum and no
+  2  ;]
+  3  ;
+select * from customerlist natural join salesperson on salespersonnum and no
+                                                    *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select * from customerlist natural join salesperson on salespersonnum and no
+  2* ;
+  3  ed
+  4  ;
+select * from customerlist natural join salesperson on salespersonnum and no
+                                                    *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from customerlist natural join salesperson on salespersonnum and no
+  2  ;
+select * from customerlist natural join salesperson on salespersonnum and no
+                                                    *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from customerlist natural join salesperson on salespersonnum=no
+  2  ;
+select * from customerlist natural join salesperson on salespersonnum=no
+                                                    *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from customerlist natural join salesperson on customerlist.salespersonnum=salesperson.no
+  2  ;
+select * from customerlist natural join salesperson on customerlist.salespersonnum=salesperson.no
+                                                    *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from customerlist natural join salesperson where customerlist.salespersonnum=salesperson.no
+  2  ;
+select * from customerlist natural join salesperson where customerlist.salespersonnum=salesperson.no
+                                                          *
+ERROR at line 1:
+ORA-00904: "CUSTOMERLIST"."SALESPERSONNUM": invalid identifier 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from customerlist natural join salesperson where salespersonnum=no
+  2  ;
+select * from customerlist natural join salesperson where salespersonnum=no
+                                                          *
+ERROR at line 1:
+ORA-00904: "SALESPERSONNUM": invalid identifier 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from customerlist natural join salesperson where salespersonbnum=no
+  2  ;
+
+no rows selected
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from customerlist natural join salesperson where customerlist.salespersonbnum=salesperson.no
+  2  ;
+
+no rows selected
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from customerlist natural join salesperson where customerlist.salespersonbnum=salesperson.no
+  2  /
+
+no rows selected
+
+SQL> select customerlist.name,salesperson.name from customerlist inner join
+  2  salesperson on customerlist.salespersonbnum=salesperson.no
+  3  ;
+
+NAME            NAME                                                                                
+--------------- ---------------                                                                     
+smith           johnson                                                                             
+jones           johnson                                                                             
+
+SQL> select customerlist.name,salesperson.name from customerlist left outer join salesperson on salecustomerlist.salespersonbnum=salesperson.no
+  2  ;
+select customerlist.name,salesperson.name from customerlist left outer join salesperson on salecustomerlist.salespersonbnum=salesperson.no
+                                                                                           *
+ERROR at line 1:
+ORA-00904: "SALECUSTOMERLIST"."SALESPERSONBNUM": invalid identifier 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select customerlist.name,salesperson.name from customerlist left outer join salesperson on customerlist.salespersonbnum=salesperson.no
+  2  ;
+
+NAME            NAME                                                                                
+--------------- ---------------                                                                     
+jones           johnson                                                                             
+smith           johnson                                                                             
+wei                                                                                                 
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from customerlist left outer join salesperson on customerlist.salespersonbnum=salesperson.no
+  2  ;
+
+NAME            ADDRE   CRATING   CAMOUNT  CBALANCE SALESPERSONBNUM        NO NAME            ADDRE 
+--------------- ----- --------- --------- --------- --------------- --------- --------------- ----- 
+   OFFICE                                                                                           
+---------                                                                                           
+jones           yyy           7      5000      4000             101       101 johnson         aaa   
+       23                                                                                           
+                                                                                                    
+smith           xxx           5      1000      1000             101       101 johnson         aaa   
+       23                                                                                           
+                                                                                                    
+wei             zzz          10     10000     10000                                                 
+                                                                                                    
+                                                                                                    
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select customerlist.name,salesperson.name from customerlist right outer join salesperson on customerlist.salespersonbnum=salesperson.no
+  2  ;
+
+NAME            NAME                                                                                
+--------------- ---------------                                                                     
+smith           johnson                                                                             
+jones           johnson                                                                             
+                miller                                                                              
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select customerlist.name,salesperson.name from customerlist full outer join salesperson on customerlist.salespersonbnum=salesperson.no
+  2  ;
+
+NAME            NAME                                                                                
+--------------- ---------------                                                                     
+jones           johnson                                                                             
+smith           johnson                                                                             
+wei                                                                                                 
+                miller                                                                              
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT Customerlist.Name, salesperson.Name
+  2* FROM Customerlist UNION JOIN Salesperson on customerlist.salespersonbnum=salesperson.no
+  3  ;
+FROM Customerlist UNION JOIN Salesperson on customerlist.salespersonbnum=salesperson.no
+                        *
+ERROR at line 2:
+ORA-00928: missing SELECT keyword 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT Customerlist.Name, salesperson.Name
+  2* FROM Customerlist UNION JOIN Salesperson where customerlist.salespersonbnum=salesperson.no
+  3  ;
+FROM Customerlist UNION JOIN Salesperson where customerlist.salespersonbnum=salesperson.no
+                        *
+ERROR at line 2:
+ORA-00928: missing SELECT keyword 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT Customerlist.Name, salesperson.Name
+  2* FROM Customerlist UNION Salesperson where customerlist.salespersonbnum=salesperson.no
+  3  ;
+FROM Customerlist UNION Salesperson where customerlist.salespersonbnum=salesperson.no
+                        *
+ERROR at line 2:
+ORA-00928: missing SELECT keyword 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* SELECT Customerlist.Name, salesperson.Name FROM Customerlist UNION JOIN Salesperson where customerlist.salespersonbnum=salesperson.no
+  2  ;
+SELECT Customerlist.Name, salesperson.Name FROM Customerlist UNION JOIN Salesperson where customerlist.salespersonbnum=salesperson.no
+                                                                   *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* SELECT * FROM Customerlist UNION JOIN Salesperson where customerlist.salespersonbnum=salesperson.no
+  2  ;
+SELECT * FROM Customerlist UNION JOIN Salesperson where customerlist.salespersonbnum=salesperson.no
+                                 *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* SELECT Customerlist.Name, salesperson.Name FROM Customerlist full outer JOIN Salesperson where customerlist.salespersonbnum=salesperson.no
+  2  ;
+SELECT Customerlist.Name, salesperson.Name FROM Customerlist full outer JOIN Salesperson where customerlist.salespersonbnum=salesperson.no
+                                                                                         *
+ERROR at line 1:
+ORA-00905: missing keyword 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* SELECT Customerlist.Name, salesperson.Name FROM Customerlist full outer JOIN Salesperson on customerlist.salespersonbnum=salesperson.no
+  2  ;
+
+NAME            NAME                                                                                
+--------------- ---------------                                                                     
+jones           johnson                                                                             
+smith           johnson                                                                             
+wei                                                                                                 
+                miller                                                                              
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  (SELECT Customerlist.Name, salesperson.Name FROM Customerlist full outer JOIN Salesperson on customerlist.salespersonbnum=salesperson.no)
+  2  minus
+  3* (SELECT Customerlist.Name, salesperson.Name FROM Customerlist JOIN Salesperson on customerlist.salespersonbnum=salesperson.no)
+  4  ;
+
+NAME            NAME                                                                                
+--------------- ---------------                                                                     
+wei                                                                                                 
+                miller                                                                              
+
+SQL> spool off

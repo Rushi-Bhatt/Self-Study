@@ -1,0 +1,290 @@
+SQL> spool on
+
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* create table orders(O_id number(2) , orderdate varchar2(15) , orderprice number(5) , customer v
+  2  ;
+
+Table created.
+
+SQL> desc orders
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ O_ID                                                           NUMBER(2)
+ ORDERDATE                                                      VARCHAR2(15)
+ ORDERPRICE                                                     NUMBER(5)
+ CUSTOMER                                                       VARCHAR2(10)
+
+
+  1* insert into orders values('&O_id' , '&orderdate' , '&orderprice' , '&customer')
+  2  ;
+Enter value for o_id: 1
+Enter value for orderdate: 2008/11/12
+Enter value for orderprice: 1000
+Enter value for customer: Hansen
+old   1: insert into orders values('&O_id' , '&orderdate' , '&orderprice' , '&customer')
+new   1: insert into orders values('1' , '2008/11/12' , '1000' , 'Hansen')
+
+1 row created.
+
+SQL> 2
+  2*
+SQL> /
+Enter value for o_id: 2
+Enter value for orderdate: 2008/10/23
+Enter value for orderprice: 1600
+Enter value for customer: Nilsen
+old   1: insert into orders values('&O_id' , '&orderdate' , '&orderprice' , '&customer')
+new   1: insert into orders values('2' , '2008/10/23' , '1600' , 'Nilsen')
+
+1 row created.
+
+SQL> /
+Enter value for o_id: 3
+Enter value for orderdate: 2008/09/02
+Enter value for orderprice: 700
+Enter value for customer: Hansen
+old   1: insert into orders values('&O_id' , '&orderdate' , '&orderprice' , '&customer')
+new   1: insert into orders values('3' , '2008/09/02' , '700' , 'Hansen')
+
+1 row created.
+
+SQL> /
+Enter value for o_id: 4
+Enter value for orderdate: 2008/09/03
+Enter value for orderprice: 300
+Enter value for customer: Hansen
+old   1: insert into orders values('&O_id' , '&orderdate' , '&orderprice' , '&customer')
+new   1: insert into orders values('4' , '2008/09/03' , '300' , 'Hansen')
+
+1 row created.
+
+SQL> /
+Enter value for o_id: 5
+Enter value for orderdate: 2008/08/30
+Enter value for orderprice: 2000
+Enter value for customer: Jensen
+old   1: insert into orders values('&O_id' , '&orderdate' , '&orderprice' , '&customer')
+new   1: insert into orders values('5' , '2008/08/30' , '2000' , 'Jensen')
+
+1 row created.
+
+SQL> /
+Enter value for o_id: 6
+Enter value for orderdate: 2008/10/04
+Enter value for orderprice: 100
+Enter value for customer: Nilsen
+old   1: insert into orders values('&O_id' , '&orderdate' , '&orderprice' , '&customer')
+new   1: insert into orders values('6' , '2008/10/04' , '100' , 'Nilsen')
+
+1 row created.
+
+SQL> select * from orders
+  2  ;
+
+     O_ID ORDERDATE       ORDERPRICE CUSTOMER
+--------- --------------- ---------- ----------
+        1 2008/11/12            1000 Hansen
+        2 2008/10/23            1600 Nilsen
+        3 2008/09/02             700 Hansen
+        4 2008/09/03             300 Hansen
+        5 2008/08/30            2000 Jensen
+        6 2008/10/04             100 Nilsen
+
+6 rows selected.
+
+SQL> select avg(orderprice) as OrderAverage FROM orders
+  2  ;
+
+ORDERAVERAGE
+------------
+         950
+
+
+  1* select count(customer) as customerNilsen from orders
+SQL> /
+
+CUSTOMERNILSEN
+--------------
+             6
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select count(customer) as customerNilsen from orders where customer='Nilsen'
+  2  ;
+
+CUSTOMERNILSEN
+--------------
+             2
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select count(distinct customer) as numberofcustomers from orders
+SQL> /
+
+NUMBEROFCUSTOMERS
+-----------------
+                3
+
+
+
+SQL> select max(orderprice) as maximum from orders;
+
+  MAXIMUM
+---------
+     2000
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select min(orderprice) as maximum from orders
+SQL> /
+
+  MAXIMUM
+---------
+      100
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select min(orderprice) as minimum from orders
+SQL> /
+
+  MINIMUM
+---------
+      100
+
+SQL> 
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select sum(orderprice) as total from orders
+SQL> /
+
+    TOTAL
+---------
+     5700
+
+
+
+  1* select customer,sum(orderprice) from orders group by customer
+SQL> /
+
+CUSTOMER   SUM(ORDERPRICE)
+---------- ---------------
+Jensen                2000
+Hansen                20 Enter value for o_id: 5
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> Enter value for orderdate: 2008/08/30
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SQL> Enter value for orderprice: 2000
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SQL> Enter value for customer: Jensen
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SQL> old   1: insert into orders values('&O_id' , '&orderdate' , '&orderprice' , '&customer')
+SP2-0042: unknown command beginning "old   1: i..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> new   1: insert into orders values('5' , '2008/08/30' , '2000' , 'Jensen')
+SP2-0042: unknown command beginning "new   1: i..." - rest of line ignored.
+SQL> 
+SQL> 1 row created.
+SQL> 
+SQL> SQL> /
+SP2-0042: unknown command "SQL> /" - rest of line ignored.
+SQL> Enter value for o_id: 6
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SQL> Enter value for orderdate: 2008/10/04
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> Enter value for orderprice: 100
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SQL> Enter value for customer: Nilsen
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SQL> old   1: insert into orders values('&O_id' , '&orderdate' , '&orderprice' , '&customer')
+SP2-0042: unknown command beginning "old   1: i..." - rest of line ignored.
+SQL> new   1: insert into orders values('6' , '2008/10/04' , '100' , 'Nilsen')
+SP2-0042: unknown command beginning "new   1: i..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> 
+SQL>  customer havig sum(orderprice)<2000
+SQL> /
+select customer,sum(orderprice) from orders group by customer havig sum(orderprice)<2000
+                                                              *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select customer,sum(orderprice) from orders group by customer having sum(orderprice)<2000
+SQL> /
+
+CUSTOMER   SUM(ORDERPRICE)
+---------- ---------------
+Nilsen                1700
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select customer,sum(orderprice) from orders where customer='Hansen' or customer='Jansen' group 
+SQL> /
+
+CUSTOMER   SUM(ORDERPRICE)
+---------- ---------------
+Hansen                2000
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select customer,sum(orderprice) from orders where customer='Hansen' or customer='Jensen' group 
+SQL> 
+SQL> /
+
+CUSTOMER   SUM(ORDERPRICE)
+---------- ---------------
+Jensen                2000
+Hansen                2000
+
+SQL> spool off
+SQL> spool on
+SQL> select upper(customer) from orders
+  2  ;
+
+UPPER(CUST
+----------
+HANSEN
+NILSEN
+HANSEN
+HANSEN
+JENSEN
+NILSEN
+
+6 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select lower(customer) from orders
+  2  ;
+
+LOWER(CUST
+----------
+hansen
+nilsen
+hansen
+hansen
+jensen
+nilsen
+
+6 rows selected.

@@ -1,0 +1,25 @@
+#Roll Number       : 11bce070
+#Name              : Darshil Patel
+#Objective         : Fibonacci Series
+#Dates of Start    :
+#Date of Completion:
+
+clear
+
+n=$1
+fn=1
+sn=1
+echo -n "$fn "
+echo -n "$sn "
+ans=`expr $fn + $sn`
+
+while [ `expr $n - 2` -gt 0 ]
+
+do
+        echo -n "$ans "
+        fn=$sn
+        sn=$ans
+        n=`expr $n - 1`
+        ans=`expr $fn + $sn`
+
+done

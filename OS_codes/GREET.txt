@@ -1,0 +1,30 @@
+#Roll Number       : 11bce070
+#Name              : Darshil Patel
+#Objective         : Fibonacci Series
+#Dates of Start    :
+#Date of Completion:
+
+clear
+
+
+temp_hr=` date +"%H"`
+
+if [ $temp_hr -le 12 ]
+
+then
+        msg="Good Morning $LOGNAME"
+fi
+
+if [ $temp_hr -gt 12 -a $temp_hr -le 16 ]
+
+then
+        msg="Good Afternoon $LOGNAME"
+fi
+
+if [ $temp_hr -gt 16 -a $temp_hr -le 18 ]
+
+then
+        msg="Good Evening $LOGNAME"
+fi
+
+echo $msg

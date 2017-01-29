@@ -1,0 +1,101 @@
+SQL> select * from lab;
+
+     ROLL NAME
+--------- ---------
+        1 Aakash
+        1 Aakash
+        2 Adit
+        3
+          Aman
+        4 Ankit
+        5 Ankur
+          Anuj
+        7
+
+9 rows selected.
+
+SQL> select Roll from lab;
+
+     ROLL
+---------
+        1
+        1
+        2
+        3
+
+        4
+        5
+
+        7
+
+9 rows selected.
+
+SQL> select Name from lab;
+
+NAME
+---------
+Aakash
+Aakash
+Adit
+
+Aman
+Ankit
+Ankur
+Anuj
+
+
+9 rows selected.
+
+
+SQL> select * from lab order by(Name) desc;
+
+     ROLL NAME
+--------- ---------
+        3
+        7
+          Anuj
+        5 Ankur
+        4 Ankit
+          Aman
+        2 Adit
+        1 Aakash
+        1 Aakash
+
+9 rows selected.
+
+SQL> select * from lab order by(Name);
+
+     ROLL NAME
+--------- ---------
+        1 Aakash
+        1 Aakash
+        2 Adit
+          Aman
+        4 Ankit
+        5 Ankur
+          Anuj
+        7
+        3
+
+9 rows selected.
+
+SQL> select * from lab where Roll=1;
+
+     ROLL NAME
+--------- ---------
+        1 Aakash
+        1 Aakash
+
+SQL> select * from lab where Name is NULL;
+
+     ROLL NAME
+--------- ---------
+        3
+        7
+
+SQL> select * from lab where Roll is NULL;
+
+     ROLL NAME
+--------- ---------
+          Aman
+          Anuj

@@ -1,0 +1,27 @@
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  name varchar2(9);
+  3  begin
+  4  name := '&name';
+  5  dbms_output.put_line('My Name Is: '||name);
+  6* end;
+SQL> /
+Enter value for name: Rushi
+old   4: name := '&name';
+new   4: name := 'Rushi';
+
+PL/SQL procedure successfully completed.
+
+SQL> set serveroutput on;
+SQL> /
+Enter value for name: Rushi
+old   4: name := '&name';
+new   4: name := 'Rushi';
+My Name Is: Rushi
+
+PL/SQL procedure successfully completed.
+
+

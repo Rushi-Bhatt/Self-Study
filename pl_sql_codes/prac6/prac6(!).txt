@@ -1,0 +1,127 @@
+SQL> desc employee
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ PC_NO                                                 NOT NULL NUMBER(3)
+ NAME                                                           VARCHAR2(15)
+ DEPTNO                                                         NUMBER(3)
+
+SQL> desc dept
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ DEPTNO                                                         NUMBER(3)
+ DEPTNAME                                                       VARCHAR2(5)
+
+SQL> select * from employee
+  2  ;
+
+no rows selected
+
+SQL> select * from dept
+  2  ;
+
+   DEPTNO DEPTN                                                                                     
+--------- -----                                                                                     
+      100 ce                                                                                        
+      200 ec                                                                                        
+      300 it                                                                                        
+      400 ic                                                                                        
+
+SQL> insert into employee values('&pc_no','&name','&deptno');
+Enter value for pc_no: 1
+Enter value for name: sapan
+Enter value for deptno: 100
+old   1: insert into employee values('&pc_no','&name','&deptno')
+new   1: insert into employee values('1','sapan','100')
+
+1 row created.
+
+SQL> /
+Enter value for pc_no: 2
+Enter value for name: karan
+Enter value for deptno: 200
+old   1: insert into employee values('&pc_no','&name','&deptno')
+new   1: insert into employee values('2','karan','200')
+
+1 row created.
+
+SQL> /
+Enter value for pc_no: 3
+Enter value for name: deep
+Enter value for deptno: 400
+old   1: insert into employee values('&pc_no','&name','&deptno')
+new   1: insert into employee values('3','deep','400')
+
+1 row created.
+
+SQL> /]
+Enter value for pc_no: 4
+Enter value for name: harshil
+Enter value for deptno: 100
+old   1: insert into employee values('&pc_no','&name','&deptno')
+new   1: insert into employee values('4','harshil','100')
+
+1 row created.
+
+SQL> select * from dept
+  2  ;
+
+   DEPTNO DEPTN                                                                                     
+--------- -----                                                                                     
+      100 ce                                                                                        
+      200 ec                                                                                        
+      300 it                                                                                        
+      400 ic                                                                                        
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from employee
+  2  ;
+
+    PC_NO NAME               DEPTNO                                                                 
+--------- --------------- ---------                                                                 
+        1 sapan                 100                                                                 
+        2 karan                 200                                                                 
+        3 deep                  400                                                                 
+        4 harshil               100                                                                 
+
+SQL> select * from employee left outer join dept where employee.deptno=dept.deptno;
+select * from employee left outer join dept where employee.deptno=dept.deptno
+                                            *
+ERROR at line 1:
+ORA-00905: missing keyword 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from employee left outer join dept on employee.deptno=dept.deptno
+SQL> ;
+  1* select * from employee left outer join dept on employee.deptno=dept.deptno
+SQL> /
+
+    PC_NO NAME               DEPTNO    DEPTNO DEPTN                                                 
+--------- --------------- --------- --------- -----                                                 
+        4 harshil               100       100 ce                                                    
+        1 sapan                 100       100 ce                                                    
+        2 karan                 200       200 ec                                                    
+        3 deep                  400       400 ic                                                    
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from employee natural join dept
+SQL> ;
+  1* select * from employee natural join dept
+SQL> /
+
+   DEPTNO     PC_NO NAME            DEPTN                                                           
+--------- --------- --------------- -----                                                           
+      100         4 harshil         ce                                                              
+      100         1 sapan           ce                                                              
+      200         2 karan           ec                                                              
+      400         3 deep            ic                                                              
+
+SQL> commit
+  2  spool off
+  3  

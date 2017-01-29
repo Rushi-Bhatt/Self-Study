@@ -1,0 +1,18 @@
+tr=`date +%H`
+
+if [ $tr -lt 12 ]
+then
+echo " Good morning user"
+fi
+if [ $tr -ge 12 -a $tr -lt 16 ]
+then
+echo " Good afternoon user"
+fi
+if [ $tr -ge 16 -a $tr -lt 19 ]
+then
+echo " Good evening user"
+fi
+if [ $tr -ge 19 ]
+then
+echo " Good night user"
+fi

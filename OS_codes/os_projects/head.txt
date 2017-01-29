@@ -1,0 +1,13 @@
+echo "How many lines u wanna read:"
+read a
+c=1
+exec < r2
+while read line
+do
+    if [ $c -le $a ]
+    then
+    echo "$line"
+    fi
+
+c=$((c+1))
+done <"r2"
